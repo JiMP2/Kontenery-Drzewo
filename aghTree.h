@@ -109,7 +109,7 @@ bool aghTree<T>::insert(T const& _value){
 
 template <typename T>
 bool aghTree<T>::insert(unsigned int _index, const T& _value){
-     return false;
+     return insert(_value);
 }
 
 template <typename T>

@@ -7,7 +7,10 @@ void showTestResult(int, bool);
 int main(void)
 {
     cout << "main by kk. Last updated 15.04.2013\n";
-
+    
+    aghTree<int> drzewo;
+    
+    /*
     aghVector<aghVector<int> > a;
     aghContainer<int>* c1 = new aghVector<int>;
     aghTree<int>* c2;
@@ -145,7 +148,7 @@ int main(void)
     }
 
     cout << "Finally, this is the end...\n";
-
+*/
     return 0;
 }
 // ---------------------------------------------------------
