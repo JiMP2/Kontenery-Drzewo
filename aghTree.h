@@ -57,7 +57,7 @@ class aghTree : public aghContainer<T>{
           //\return reference to 'this' object
           aghTree<T>& operator=(const aghContainer<T>& _right);
           
-          aghNode<T>* findNode(unsigned int _index);
+          aghNode<T> * findNode(aghNode<T> * node, unsigned int _calledIndex, unsigned int _currentIndex) const;
 };
 
 template <typename T>
@@ -77,61 +77,80 @@ aghTree<T>::~aghTree(){
 }
 
 template <typename T>
-T& aghTree<T>::at(unsigned int _index) const{
-
+T& aghTree<T>::at(unsigned int _index) const 
+{
+    return findNode(root, _index, 0)->getValue();
 }
 
 template <typename T>
-unsigned int aghTree<T>::size(void) const{
+unsigned int aghTree<T>::size(void) const
+{
      return elementsCount;
 }
 
 template <typename T>
 bool aghTree<T>::insert(T const& _value){
-     aghNode<T>* newNode = root, temp = NULL;
-     
-     while(newNode != NULL){
-          temp = newNode;
-          if(_value > newNode->getValue()) newNode = newNode->getNext();
-          else newNode = newNode->getPrev();    
-     }
-     newNode = new aghNode<T> (_value);
-     if(temp){
-          if(_value > temp->getValue()) temp->seNext(newNode);
-               else temp->setPrev(newNode);
-     }else{
-          root = newNode;
-     }    
-     elementsCount++;
-     return true; 
-
+    //cout << "drzewo";
+    aghNode<T> *newNode = root, *temp = NULL;
+    
+    while(newNode)
+    {
+        cout << "petla";
+        temp = newNode;
+        if(_value > newNode->getValue()) newNode = newNode->getNext();
+        else newNode = newNode->getPrev();
+    }
+    newNode = new aghNode<T>(_value);
+    if(temp)
+    {
+        if(_value > temp->getValue())
+            temp->setNext(newNode);
+        else
+            temp->setPrev(newNode);
+    }
+    else
+    {
+        root = newNode;
+    }
+    elementsCount++;
+    return true;
+    
 }
 
 template <typename T>
-bool aghTree<T>::insert(unsigned int _index, const T& _value){
+bool aghTree<T>::insert(unsigned int _index, const T& _value)
+{
      return insert(_value);
 }
 
 template <typename T>
-bool aghTree<T>::remove(unsigned int _index){
+bool aghTree<T>::remove(unsigned int _index)
+{
 
 }
 
 template <typename T>
-aghTree<T>& aghTree<T>::operator=(const aghContainer<T>& _right){
-
+aghTree<T>& aghTree<T>::operator=(const aghContainer<T>& _right)
+{
 
 }
 
-/*template <typename T>
-aghNode<T>* aghTree<T>::findNode(wierzchołek_v, int _index, int obecnyIndeks)
- {
-     if (obecnyIndeks == szukanyIndeks)
+template <typename T>
+aghNode<T> * aghTree<T>::findNode(aghNode<T> * node, unsigned int _calledIndex, unsigned int _currentIndex) const
+{
+    if(_calledIndex >  (size() - 1))
     {
-         return obecnyWierzcholek
+        throw aghException(0, "Index out of range", __FILE__, __LINE__);
     }
-    jeżeli wierzchołek_v.lewy_syn != null to IN-ORDER(wierzchołek_v.lewy_syn)
-     obecnyIndeks++
-    jeżeli wierzchołek_v.prawy_syn != null to IN-ORDER(wierzchołek_v.prawy_syn)
- }*/
+    
+    while(_calledIndex != _currentIndex)
+    {
+        if(node->getPrev() != NULL)
+            return findNode(node->getPrev(), _calledIndex, _currentIndex++);
+        else if (node->getNext() != NULL)
+            return findNode(node->getNext(), _calledIndex, _currentIndex++);
+    }
+    
+    return node;
+ }
 #endif
