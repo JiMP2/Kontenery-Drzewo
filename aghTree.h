@@ -88,33 +88,37 @@ unsigned int aghTree<T>::size(void) const{
 
 template <typename T>
 bool aghTree<T>::insert(T const& _value){
-     aghNode<T>* newNode = root, temp = NULL;
+     //cout << "drzewo";
+     aghNode<T> *newNode = root, *temp = NULL;
      
-     while(newNode != NULL){
+     while(newNode){
+          cout << "petla";
           temp = newNode;
           if(_value > newNode->getValue()) newNode = newNode->getNext();
           else newNode = newNode->getPrev();    
      }
-     newNode = new aghNode<T> (_value);
+     newNode = new aghNode<T>(_value);
      if(temp){
-          if(_value > temp->getValue()) temp->seNext(newNode);
+          if(_value > temp->getValue()) temp->setNext(newNode);
                else temp->setPrev(newNode);
      }else{
           root = newNode;
-     }    
-     elementsCount++;
+     }   
+     //elementsCount++;
      return true; 
 
 }
 
 template <typename T>
 bool aghTree<T>::insert(unsigned int _index, const T& _value){
+     cout << "baza";
      return insert(_value);
 }
 
 template <typename T>
 bool aghTree<T>::remove(unsigned int _index){
-
+     //aghNode<T>* toRemove = findNode(_index);
+     
 }
 
 template <typename T>
