@@ -90,7 +90,6 @@ unsigned int aghTree<T>::size(void) const
 
 template <typename T>
 bool aghTree<T>::insert(T const& _value){
-<<<<<<< HEAD
     //cout << "drzewo";
     aghNode<T> *newNode = root, *temp = NULL;
     
@@ -119,34 +118,8 @@ bool aghTree<T>::insert(T const& _value){
 }
 
 template <typename T>
-bool aghTree<T>::insert(unsigned int _index, const T& _value)
-{
-=======
-     //cout << "drzewo";
-     aghNode<T> *newNode = root, *temp = NULL;
-     
-     while(newNode){
-          cout << "petla";
-          temp = newNode;
-          if(_value > newNode->getValue()) newNode = newNode->getNext();
-          else newNode = newNode->getPrev();    
-     }
-     newNode = new aghNode<T>(_value);
-     if(temp){
-          if(_value > temp->getValue()) temp->setNext(newNode);
-               else temp->setPrev(newNode);
-     }else{
-          root = newNode;
-     }   
-     //elementsCount++;
-     return true; 
-
-}
-
-template <typename T>
 bool aghTree<T>::insert(unsigned int _index, const T& _value){
      cout << "baza";
->>>>>>> 14b07cc8a59858873e6bffac6c30e7e4e1422049
      return insert(_value);
 }
 
@@ -154,12 +127,6 @@ template <typename T>
 <<<<<<< HEAD
 bool aghTree<T>::remove(unsigned int _index)
 {
-
-=======
-bool aghTree<T>::remove(unsigned int _index){
-     //aghNode<T>* toRemove = findNode(_index);
-     
->>>>>>> 14b07cc8a59858873e6bffac6c30e7e4e1422049
 }
 
 template <typename T>
