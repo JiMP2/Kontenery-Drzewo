@@ -7,8 +7,11 @@ void showTestResult(int, bool);
 int main(void)
 {
     cout << "main by kk. Last updated 15.04.2013\n";
-    
+        
     aghTree<int> drzewo;
+    
+    drzewo.insert(5);
+    cout << drzewo.size();
     
     /*
     aghVector<aghVector<int> > a;
