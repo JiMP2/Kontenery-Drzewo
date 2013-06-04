@@ -71,67 +71,55 @@ aghTree<T>::aghTree(const aghContainer<T>& _source){
 
 template <typename T>
 aghTree<T>::~aghTree(){
-     this->clear();
+     //this->clear();
      elementsCount = 0;
      root = NULL;
 }
 
 template <typename T>
-T& aghTree<T>::at(unsigned int _index) const 
-{
-    return findNode(root, _index, 0)->getValue();
+T& aghTree<T>::at(unsigned int _index) const{
+     return findNode(root, _index, 0)->getValue();
 }
 
 template <typename T>
-unsigned int aghTree<T>::size(void) const
-{
+unsigned int aghTree<T>::size(void) const{
      return elementsCount;
 }
 
 template <typename T>
 bool aghTree<T>::insert(T const& _value){
-    //cout << "drzewo";
-    aghNode<T> *newNode = root, *temp = NULL;
-    
-    while(newNode)
-    {
-        cout << "petla";
-        temp = newNode;
-        if(_value > newNode->getValue()) newNode = newNode->getNext();
-        else newNode = newNode->getPrev();
-    }
-    newNode = new aghNode<T>(_value);
-    if(temp)
-    {
-        if(_value > temp->getValue())
-            temp->setNext(newNode);
-        else
-            temp->setPrev(newNode);
-    }
-    else
-    {
-        root = newNode;
-    }
-    elementsCount++;
-    return true;
-    
+     aghNode<T> *newNode = root, *temp = NULL;
+     
+     while(newNode){
+          temp = newNode;
+          if(_value > newNode->getValue()) newNode = newNode->getNext();
+          else newNode = newNode->getPrev();    
+     }
+     newNode = new aghNode<T>(_value);
+     if(temp){
+          if(_value > temp->getValue()) temp->setNext(newNode);
+               else temp->setPrev(newNode);
+     }else{
+          root = newNode;
+     }   
+     elementsCount++;
+     return true; 
 }
 
 template <typename T>
 bool aghTree<T>::insert(unsigned int _index, const T& _value){
-     cout << "baza";
      return insert(_value);
 }
 
 template <typename T>
-<<<<<<< HEAD
-bool aghTree<T>::remove(unsigned int _index)
-{
+bool aghTree<T>::remove(unsigned int _index){
+     //aghNode<T>* toRemove = findNode(_index);
+     
 }
 
 template <typename T>
-aghTree<T>& aghTree<T>::operator=(const aghContainer<T>& _right)
-{
+aghTree<T>& aghTree<T>::operator=(const aghContainer<T>& _right){
+
 
 }
 
