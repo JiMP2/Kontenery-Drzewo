@@ -6,7 +6,7 @@
 #include "aghNode.h"
 
 template <class T>
-class aghTree : public aghContainer{
+class aghTree : public aghContainer<T>{
      private: 
           aghNode<T>* root;
           unsigned int elementsCount;
@@ -42,6 +42,8 @@ class aghTree : public aghContainer{
           //\param _value - value to set for new element
           //\return TRUE if finished successfully ( FALSE otherwaise )
           bool insert(T const& _value);
+          
+          bool insert(unsigned int _index, T const& _value);
           
           //\brief Method to remove element from the list.
           //
@@ -86,7 +88,7 @@ unsigned int aghTree<T>::size(void) const{
 
 template <typename T>
 bool aghTree<T>::insert(T const& _value){
-     aghNode<T>* newNode = root, temp;
+     aghNode<T>* newNode = root, temp = NULL;
      
      while(newNode != NULL){
           temp = newNode;
@@ -94,12 +96,22 @@ bool aghTree<T>::insert(T const& _value){
           else newNode = newNode->getPrev();    
      }
      newNode = new aghNode<T> (_value);
-     if(_value > newNode->getValue()) newNode = newNode->seNext(newNode);
-          else newNode = newNode->setPrev(newNode);
+     if(temp){
+          if(_value > temp->getValue()) temp->seNext(newNode);
+               else temp->setPrev(newNode);
+     }else{
+          root = newNode;
+     }    
      elementsCount++;
      return true; 
 
 }
+
+template <typename T>
+bool aghTree<T>::insert(unsigned int _index, const T& _value){
+     return false;
+}
+
 template <typename T>
 bool aghTree<T>::remove(unsigned int _index){
 
@@ -111,7 +123,7 @@ aghTree<T>& aghTree<T>::operator=(const aghContainer<T>& _right){
 
 }
 
-template <typename T>
+/*template <typename T>
 aghNode<T>* aghTree<T>::findNode(wierzchołek_v, int _index, int obecnyIndeks)
  {
      if (obecnyIndeks == szukanyIndeks)
@@ -121,5 +133,5 @@ aghNode<T>* aghTree<T>::findNode(wierzchołek_v, int _index, int obecnyIndeks)
     jeżeli wierzchołek_v.lewy_syn != null to IN-ORDER(wierzchołek_v.lewy_syn)
      obecnyIndeks++
     jeżeli wierzchołek_v.prawy_syn != null to IN-ORDER(wierzchołek_v.prawy_syn)
- }
+ }*/
 #endif

@@ -44,7 +44,7 @@ class aghVector : public aghContainer<T>{
      //
      //\param id - id of element
      //\return value of element on id position
-     T& at(int _id) const;
+     T& at(unsigned int _id) const;
  
      //\brief Function to check ammount of elements
      //
