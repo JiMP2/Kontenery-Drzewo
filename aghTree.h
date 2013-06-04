@@ -1,6 +1,10 @@
 #ifndef AGHTREE_H
 #define AGHTREE_H
 
+#include <iostream>
+#include "aghContainer.h"
+#include "aghNode.h"
+
 template <class T>
 class aghTree : public aghContainer{
      private: 
@@ -49,7 +53,9 @@ class aghTree : public aghContainer{
           //
           //\param - source aghVector<T> object
           //\return reference to 'this' object
-          aghDlist<T>& operator=(const aghContainer<T>& _right);
+          aghTree<T>& operator=(const aghContainer<T>& _right);
+          
+          aghNode<T>* findNode(unsigned int _index);
 };
 
 template <typename T>
@@ -68,29 +74,45 @@ aghTree<T>::~aghTree(){
      root = NULL;
 }
 
+template <typename T>
 T& aghTree<T>::at(unsigned int _index) const{
 
 }
 
+template <typename T>
 unsigned int aghTree<T>::size(void) const{
      return elementsCount;
 }
 
+template <typename T>
 bool aghTree<T>::insert(T const& _value){
-
+     aghNode<T>* newNode = root, temp;
+     
+     while(newNode != NULL){
+          temp = newNode;
+          if(_value > newNode->getValue()) newNode = newNode->getNext();
+          else newNode = newNode->getPrev();    
+     }
+     newNode = new aghNode<T> (_value);
+     if(_value > newNode->getValue()) newNode = newNode->seNext(newNode);
+          else newNode = newNode->setPrev(newNode);
+     elementsCount++;
+     return true; 
 
 }
-
+template <typename T>
 bool aghTree<T>::remove(unsigned int _index){
 
 }
 
+template <typename T>
 aghTree<T>& aghTree<T>::operator=(const aghContainer<T>& _right){
 
 
 }
 
-IN-ORDER(wierzchołek_v, int szukanyIndeks, int obecnyIndeks)
+template <typename T>
+aghNode<T>* aghTree<T>::findNode(wierzchołek_v, int _index, int obecnyIndeks)
  {
      if (obecnyIndeks == szukanyIndeks)
     {

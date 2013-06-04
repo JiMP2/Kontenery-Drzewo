@@ -5,7 +5,6 @@
 
 #include "aghContainer.h"
 #include "aghException.h"
-#include "aghSlist.h"
-#include "aghDlist.h"
+#include "aghTree.h"
 
 #endif
