@@ -82,14 +82,16 @@ T& aghTree<T>::at(unsigned int _index) const
     return findNode(root, _index + 1, 0)->getValue();
 }
 
+
+
 template <typename T>
-unsigned int aghTree<T>::size(void) const
-{
+unsigned int aghTree<T>::size(void) const{
      return elementsCount;
 }
 
 template <typename T>
-bool aghTree<T>::insert(T const& _value){
+bool aghTree<T>::insert(T const& _value)
+{
     aghNode<T> *newNode = root, *temp = NULL;
     
     while(newNode)
@@ -116,12 +118,11 @@ bool aghTree<T>::insert(T const& _value){
     }
     elementsCount++;
     return true;
-    
 }
 
 template <typename T>
-bool aghTree<T>::insert(unsigned int _index, const T& _value){
-     cout << "baza";
+bool aghTree<T>::insert(unsigned int _index, const T& _value)
+{
      return insert(_value);
 }
 
@@ -132,6 +133,10 @@ bool aghTree<T>::remove(unsigned int _index)
 
 template <typename T>
 aghTree<T>& aghTree<T>::operator=(const aghContainer<T>& _right)
+{
+}
+    
+bool aghTree<T>::remove(unsigned int _index)
 {
 }
 
