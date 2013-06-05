@@ -71,7 +71,6 @@ aghTree<T>::aghTree():elementsCount(0), root(NULL)
 template <typename T>
 aghTree<T>::aghTree(const aghContainer<T>& _source)
 {
-
 }
  
 template <typename T>
@@ -146,7 +145,7 @@ bool aghTree<T>::remove(unsigned int _index)
      {
           aghNode<T>* temp = NULL;
           unsigned int i = 0;
-         aghNode<T>* toRemove; //=  NIE MA FIND NODE findNode(root, _index+1, i);
+        aghNode<T>* toRemove; //=  NIE MA FIND NODE findNode(root, _index+1, i);
           
           if(toRemove->getNext())
           {
@@ -174,7 +173,6 @@ bool aghTree<T>::remove(unsigned int _index)
           return false;
      }
 }
- 
 template <typename T>
 aghTree<T>& aghTree<T>::operator=(const aghTree<T>& _right)
 {
@@ -191,7 +189,6 @@ aghTree<T>& aghTree<T>::operator=(const aghTree<T>& _right)
 	return *this;
 
 }
- 
 template <typename T>
 aghNode<T> * aghTree<T>::inOrder(aghNode<T> * node, unsigned int _calledIndex, unsigned int & _currentIndex) const
 {
