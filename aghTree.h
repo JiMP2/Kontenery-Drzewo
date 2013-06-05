@@ -71,7 +71,7 @@ aghTree<T>::aghTree(const aghContainer<T>& _source){
 
 template <typename T>
 aghTree<T>::~aghTree(){
-     this->clear();
+     //this->clear();
      elementsCount = 0;
      root = NULL;
 }
@@ -79,7 +79,7 @@ aghTree<T>::~aghTree(){
 template <typename T>
 T& aghTree<T>::at(unsigned int _index) const 
 {
-    return findNode(root, _index, 0)->getValue();
+    return findNode(root, _index + 1, 0)->getValue();
 }
 
 template <typename T>
@@ -90,17 +90,19 @@ unsigned int aghTree<T>::size(void) const
 
 template <typename T>
 bool aghTree<T>::insert(T const& _value){
-    //cout << "drzewo";
     aghNode<T> *newNode = root, *temp = NULL;
     
     while(newNode)
     {
-        cout << "petla";
         temp = newNode;
-        if(_value > newNode->getValue()) newNode = newNode->getNext();
-        else newNode = newNode->getPrev();
+        if(_value > newNode->getValue())
+            newNode = newNode->getNext();
+        else
+            newNode = newNode->getPrev();
     }
+    
     newNode = new aghNode<T>(_value);
+    
     if(temp)
     {
         if(_value > temp->getValue())
@@ -124,7 +126,6 @@ bool aghTree<T>::insert(unsigned int _index, const T& _value){
 }
 
 template <typename T>
-<<<<<<< HEAD
 bool aghTree<T>::remove(unsigned int _index)
 {
 }
@@ -132,25 +133,16 @@ bool aghTree<T>::remove(unsigned int _index)
 template <typename T>
 aghTree<T>& aghTree<T>::operator=(const aghContainer<T>& _right)
 {
-
 }
 
 template <typename T>
 aghNode<T> * aghTree<T>::findNode(aghNode<T> * node, unsigned int _calledIndex, unsigned int _currentIndex) const
 {
-    if(_calledIndex >  (size() - 1))
-    {
-        throw aghException(0, "Index out of range", __FILE__, __LINE__);
+    if (node->getPrev() != NULL)
+        findNode(node->getPrev(), _calledIndex, _currentIndex);
+
+    if (node->getNext() != NULL)
+        findNode(node->getNext(), _calledIndex, _currentIndex);
     }
-    
-    while(_calledIndex != _currentIndex)
-    {
-        if(node->getPrev() != NULL)
-            return findNode(node->getPrev(), _calledIndex, _currentIndex++);
-        else if (node->getNext() != NULL)
-            return findNode(node->getNext(), _calledIndex, _currentIndex++);
-    }
-    
-    return node;
  }
 #endif

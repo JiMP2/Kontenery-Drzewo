@@ -122,6 +122,7 @@ public:
     aghContainer<T>::~aghContainer()
     {
     }
+            
     template <class T>
     void aghContainer<T>::append(T const& _element)
     {
