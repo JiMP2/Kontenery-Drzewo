@@ -57,7 +57,7 @@ class aghTree : public aghContainer<T>{
           //\return reference to 'this' object
           aghTree<T>& operator=(const aghContainer<T>& _right);
           
-          aghNode<T> * findNode(aghNode<T> * node, unsigned int _calledIndex, unsigned int _currentIndex) const;
+          aghNode<T> * findNode(aghNode<T> * node, unsigned int _calledIndex, unsigned int & _currentIndex) const;
 };
 
 template <typename T>
@@ -79,7 +79,8 @@ aghTree<T>::~aghTree(){
 template <typename T>
 T& aghTree<T>::at(unsigned int _index) const 
 {
-    return findNode(root, _index + 1, 0)->getValue();
+    unsigned int i = 0;
+    return findNode(root, _index + 1, i)->getValue();
 }
 
 
@@ -137,7 +138,7 @@ aghTree<T>& aghTree<T>::operator=(const aghContainer<T>& _right)
 }
 
 template <typename T>
-aghNode<T> * aghTree<T>::findNode(aghNode<T> * node, unsigned int _calledIndex, unsigned int _currentIndex) const
+aghNode<T> * aghTree<T>::findNode(aghNode<T> * node, unsigned int _calledIndex, unsigned int & _currentIndex) const
 {
     if (node->getPrev() != NULL)
         findNode(node->getPrev(), _calledIndex, _currentIndex);
