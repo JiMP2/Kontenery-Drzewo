@@ -135,10 +135,6 @@ template <typename T>
 aghTree<T>& aghTree<T>::operator=(const aghContainer<T>& _right)
 {
 }
-    
-bool aghTree<T>::remove(unsigned int _index)
-{
-}
 
 template <typename T>
 aghNode<T> * aghTree<T>::findNode(aghNode<T> * node, unsigned int _calledIndex, unsigned int _currentIndex) const
@@ -148,6 +144,6 @@ aghNode<T> * aghTree<T>::findNode(aghNode<T> * node, unsigned int _calledIndex, 
 
     if (node->getNext() != NULL)
         findNode(node->getNext(), _calledIndex, _currentIndex);
-    }
- }
+}
+
 #endif
