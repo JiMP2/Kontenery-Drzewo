@@ -9,16 +9,14 @@ int main(void)
     cout << "main by kk. Last updated 15.04.2013\n";
         
     aghTree<int> drzewo;
+	
     drzewo.insert(6);
     drzewo.insert(2);
     drzewo.insert(3);
     drzewo.insert(4);
-    
+	drzewo.insert(9);
+    drzewo.insert(1);
     cout << drzewo;
-    
-    
-    drzewo.insert(5);
-    cout << drzewo.size();
     
     /*
     aghVector<aghVector<int> > a;
