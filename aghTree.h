@@ -1,3 +1,11 @@
+/**
+* \file aghTree.h
+* \author Wojciech Kryściński / Filip Pasternak
+* \date 03.06.2013
+* \brief Definition of class template aghTree which extends aghContainer class template.
+*/
+// -------------------------------------------------------------------------
+
 #ifndef AGHTREE_H
 #define AGHTREE_H
  
@@ -5,6 +13,12 @@
 #include "aghContainer.h"
 #include "aghNode.h"
  
+/**
+* \class aghTree.h
+* \author Wojciech Kryściński / Filip Pasternak
+* \date 03.06.2013
+* \brief Definition of class template aghTree to create Binary Search Tree object.
+*/
 template <class T>
 class aghTree : public aghContainer<T>{
      private: 
@@ -13,8 +27,6 @@ class aghTree : public aghContainer<T>{
       
      public:
           //\brief The class constructor.
-          //
-          //\param _size - number of elements to store
           aghTree();
            
           //\brief The class copying constructor.
@@ -33,7 +45,7 @@ class aghTree : public aghContainer<T>{
            
           //\brief Method to check ammount of elements in the list.
           //
-          //return Ammount of the elements.
+          //return ammount of the elements.
           unsigned int size(void) const;
            
           //\brief Method to insert new element to the list.
@@ -86,10 +98,11 @@ aghTree<T>::aghTree():elementsCount(0), root(NULL)
 }
  
 template <typename T>
-aghTree<T>::aghTree(const aghContainer<T>& _source):elementsCount(_source.size()),root(NULL)
+aghTree<T>::aghTree(const aghContainer<T>& _source)
 {
      for(unsigned int i = 0; i < _source.size(); i++)
 	{
+		//cout << _source.at(i);
 		this->append(_source.at(i));
 	}
 }
@@ -182,9 +195,15 @@ bool aghTree<T>::remove(unsigned int _index)
           else if( toRemove->getPrev() != NULL && toRemove->getNext() != NULL )
           {
                i = 0;
-               temp = inOrder(root, _index+1, i);
+               temp = inOrder(toRemove->getNext(), 1, i);
                temp->setPrev(toRemove->getPrev());
                temp->setNext(toRemove->getNext());
+               
+               aghNode<T>* tempParent = findParent(temp);
+               if(tempParent->getPrev() == temp)
+                    tempParent->setPrev(NULL);
+               else
+                    tempParent->setNext(NULL);
           }
           
           if(parent)
@@ -215,7 +234,7 @@ bool aghTree<T>::remove(unsigned int _index)
 template <typename T>
 aghTree<T>& aghTree<T>::operator=(aghContainer<T> const& _right)
 {
-	if(this != &right)
+	if(this != &_right)
 	{
 		this->clear();
 		for(unsigned int i = 0; i < _right.size(); i++)
