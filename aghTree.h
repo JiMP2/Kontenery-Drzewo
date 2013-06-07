@@ -89,7 +89,7 @@ class aghTree : public aghContainer<T>{
           //
           //\param node - node for which parent we are looking
           //\return pointer to parent of node
-          aghNode<T>* findParent(aghNode<T>* node) const;
+          aghNode<T> * findParent(aghNode<T> * node) const;
 };
  
 template <typename T>
@@ -102,7 +102,6 @@ aghTree<T>::aghTree(const aghContainer<T>& _source)
 {
      for(unsigned int i = 0; i < _source.size(); i++)
 	{
-		//cout << _source.at(i);
 		this->append(_source.at(i));
 	}
 }
@@ -176,9 +175,9 @@ bool aghTree<T>::remove(unsigned int _index)
      {
           unsigned int i = 0;
           _index++;
-          aghNode<T>* toRemove = inOrder(root, _index, i);
-          aghNode<T>* parent = findParent(toRemove);
-          aghNode<T>* temp = NULL;
+          aghNode<T> *toRemove = inOrder(root, _index, i);
+          aghNode<T> *parent = findParent(toRemove);
+          aghNode<T> *temp = NULL;
           
           if( toRemove->getPrev() == NULL && toRemove->getNext() == NULL )
           {
@@ -281,14 +280,14 @@ aghNode<T> * aghTree<T>::preOrder(aghNode<T> * node, unsigned int _calledIndex, 
 }
 
 template <typename T>
-aghNode<T>* aghTree<T>::findParent(aghNode<T>* node) const
+aghNode<T>* aghTree<T>::findParent(aghNode<T> *node) const
 {
-     aghNode<T>* temp = NULL;
+     aghNode<T> *temp = NULL;
      unsigned int j = 0;
      for(unsigned int i = 0; i < elementsCount; i++)
      {
-          temp = preOrder(root, i+1, j);
           j = 0;
+          temp = preOrder(root, i+1, j);
           if( temp->getNext() == node || temp->getPrev() == node )
           {
                return temp;
