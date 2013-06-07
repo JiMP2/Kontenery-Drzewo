@@ -7,18 +7,7 @@ void showTestResult(int, bool);
 int main(void)
 {
     cout << "main by kk. Last updated 15.04.2013\n";
-    /*    
-    aghTree<int> drzewo;
-	
-    drzewo.insert(6);
-    drzewo.insert(2);
-    drzewo.insert(3);
-    drzewo.insert(4);
-	drzewo.insert(9);
-    drzewo.insert(1);
-    cout << drzewo;
-    */
-    
+
     aghVector<aghVector<int> > a;
     aghContainer<int>* c1 = new aghVector<int>;
     aghTree<int>* c2;
@@ -39,10 +28,8 @@ int main(void)
     c2 = new aghTree<int>(*c1);
     bool t2 = c2->size() == 3;
     int ttab2[] = {2, 3, 5};
-
     for(int i=0;i<3;i++)
         t2 = t2 && (ttab2[i] == c2->at(i));
-
     showTestResult(2, t2);
 
     // 3rd test - odwolania
@@ -128,20 +115,14 @@ int main(void)
     {
         showTestResult(12, false);
     }
-    cout << *c2 << endl;
+
     // 13th test - usuwanie z pojemnika
     c2->remove(2);    // -8
-    cout << *c2 << endl;
     c2->remove(0);    // -20
-    cout << *c2 << endl;
     c2->remove(1);    // -5
-    cout << *c2 << endl;
     c2->remove(5);    // 9
-    cout << *c2 << endl;
     c2->remove(5);    // 12
-    cout << *c2 << endl;
     c2->remove(4);    // 7
-    cout << *c2 << endl;
     showTestResult(13, c2->size() == 5);
 
     // 14th test

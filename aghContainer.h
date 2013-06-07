@@ -132,9 +132,9 @@ public:
     template <typename T>
     bool aghContainer<T>::replace(unsigned int _position, T const& _element)
     {
-        if(insert(_position, _element))
+        if(remove(_position))
         {
-               if(remove(_position+1))
+               if(insert(_position, _element))
                {
                     return true;
                }
